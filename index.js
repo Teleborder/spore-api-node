@@ -4,7 +4,7 @@ module.exports = Envy;
 
 function Envy(options) {
   options = options || {};
-  this.host = options.host || "0.0.0.0";
+  this.host = options.host || "envy.dev";
   this.port = options.port || 3000;
   this.protocol = options.protocol || "http";
 }
