@@ -92,8 +92,12 @@ Envy.prototype.inviteToEnv = function () {
   // Not implemented on server
 };
 
-Envy.prototype.getDotEnvy = function () {
+Envy.prototype.getDotEnvy = function (appName, envName, callback) {
+  this._authGet("/apps/" + appName + "/env/" + envName + "/.envy", function (err, _json, body) {
+    if(err) return callback(err);
 
+    callback(null, body);
+  });
 };
 
 Envy.prototype.updateEnv = function (appName, envName, data, callback) {
