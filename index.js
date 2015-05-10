@@ -7,10 +7,21 @@ function Envy(options) {
   this.host = options.host || "envy.dev";
   this.port = options.port || 3000;
   this.protocol = options.protocol || "http";
+  this.key = options.key || null;
 }
 
+// Administrative Methods (Public)
+
+Envy.prototype.setKey = function (key) {
+  this.key = key;
+
+  return this;
+};
+
+// API Methods (Public)
+
 Envy.prototype.signup = function (email, password, callback) {
-  this.post("/signup", { email: email, password: password }, function (err, body) {
+  this._post("/signup", { email: email, password: password }, function (err, body) {
     if(err) return callback(err);
 
     callback(null, body.user.key);
@@ -18,24 +29,95 @@ Envy.prototype.signup = function (email, password, callback) {
 };
 
 Envy.prototype.login = function (email, password, callback) {
-  this.post("/login", { email: email, password: password }, function (err, body) {
+  this._post("/login", { email: email, password: password }, function (err, body) {
     if(err) return callback(err);
 
     callback(null, body.user.key);
   });
 };
 
-Envy.prototype.post = function (path, data, callback) {
+Envy.prototype.createApp = function () {
+
+};
+
+Envy.prototype.listApps = function () {
+
+};
+
+Envy.prototype.getApp = function () {
+
+};
+
+Envy.prototype.listAppUsers = function () {
+
+};
+
+Envy.prototype.inviteToApp = function () {
+  // Not implemented on server
+};
+
+Envy.prototype.getEnv = function () {
+
+};
+
+Envy.prototype.listEnvUsers = function () {
+
+};
+
+Envy.prototype.inviteToEnv = function () {
+  // Not implemented on server
+};
+
+Envy.prototype.getDotEnvy = function () {
+
+};
+
+Envy.prototype.set = function () {
+
+};
+
+// API Support (Private)
+
+Envy.prototype._authPost = function (path, data, callback) {
+  if(!this.key) return callback(new Error("A key must be set to make authenticated requests."));
+
+  this.post(path, data, { key: this.key }, callback);
+};
+
+Envy.prototype._authGet = function (path, callback) {
+  if(!this.key) return callback(new Error("A key must be set to make authenticated requests."));
+
+  this._get(path, { key: this.key }, callback);
+};
+
+
+Envy.prototype._post = function (path, data, qs, callback) {
+  if(!callback) {
+    callback = qs;
+    qs = {};
+  }
+
   request.post(
-    this.url(path),
-    { form: data },
+    this._url(path),
+    {
+      form: data,
+      qs: qs
+    },
     this._handleResponse(callback)
   );
 };
 
-Envy.prototype.get = function (path, callback) {
+Envy.prototype._get = function (path, qs, callback) {
+  if(!callback) {
+    callback = qs;
+    qs = {};
+  }
+
   request.get(
-    this.url(path),
+    this._url(path),
+    {
+      qs: qs
+    },
     this._handleResponse(callback)
   );
 };
@@ -66,10 +148,10 @@ Envy.prototype._handleResponse = function (callback) {
   };
 };
 
-Envy.prototype.url = function (path) {
+Envy.prototype._url = function (path) {
   var url = this.protocol + "://" + this.host;
 
-  if(!this.usesDefaultPort()) {
+  if(!this._usesDefaultPort()) {
     url += ":" + this.port;
   }
 
@@ -78,7 +160,7 @@ Envy.prototype.url = function (path) {
   return url;
 };
 
-Envy.prototype.usesDefaultPort = function () {
+Envy.prototype._usesDefaultPort = function () {
   return (this.protocol === "http" && this.port.toString() === "80") ||
     (this.protocol === "https" && this.port.toString() === "443");
 };
