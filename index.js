@@ -68,8 +68,12 @@ Envy.prototype.listAppUsers = function (appName, callback) {
   });
 };
 
-Envy.prototype.inviteToApp = function () {
-  // Not implemented on server
+Envy.prototype.inviteToApp = function (appName, email, callback) {
+  this._authPost("/apps/" + appName + "/users", { email: email }, function (err, json) {
+    if(err) return callback(err);
+
+    callback(null, json.user);
+  });
 };
 
 Envy.prototype.getEnv = function (appName, envName, callback) {
@@ -80,7 +84,7 @@ Envy.prototype.getEnv = function (appName, envName, callback) {
   });
 };
 
-Envy.prototype.listEnvUsers = function () {
+Envy.prototype.listEnvUsers = function (appName, envName, callback) {
   this._authGet("/apps/" + appName + "/env/" + envName + "/users", function (err, json) {
     if(err) return callback(err);
 
@@ -88,8 +92,12 @@ Envy.prototype.listEnvUsers = function () {
   });
 };
 
-Envy.prototype.inviteToEnv = function () {
-  // Not implemented on server
+Envy.prototype.inviteToEnv = function (appName, envName, email, callback) {
+  this._authPost("/apps/" + appName + "/env/" + envName + "/users", { email: email }, function (err, json) {
+    if(err) return callback(err);
+
+    callback(null, json.user);
+  });
 };
 
 Envy.prototype.getDotEnvy = function (appName, envName, callback) {
