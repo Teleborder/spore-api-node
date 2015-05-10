@@ -24,7 +24,7 @@ Envy.prototype.signup = function (email, password, callback) {
   this._post("/signup", { email: email, password: password }, function (err, json) {
     if(err) return callback(err);
 
-    callback(null, json.user.key);
+    callback(null, json.user);
   });
 };
 
@@ -32,7 +32,7 @@ Envy.prototype.login = function (email, password, callback) {
   this._post("/login", { email: email, password: password }, function (err, json) {
     if(err) return callback(err);
 
-    callback(null, json.user.key);
+    callback(null, json.user);
   });
 };
 
