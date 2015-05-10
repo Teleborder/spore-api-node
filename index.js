@@ -21,18 +21,18 @@ Envy.prototype.setKey = function (key) {
 // API Methods (Public)
 
 Envy.prototype.signup = function (email, password, callback) {
-  this._post("/signup", { email: email, password: password }, function (err, body) {
+  this._post("/signup", { email: email, password: password }, function (err, json) {
     if(err) return callback(err);
 
-    callback(null, body.user.key);
+    callback(null, json.user.key);
   });
 };
 
 Envy.prototype.login = function (email, password, callback) {
-  this._post("/login", { email: email, password: password }, function (err, body) {
+  this._post("/login", { email: email, password: password }, function (err, json) {
     if(err) return callback(err);
 
-    callback(null, body.user.key);
+    callback(null, json.user.key);
   });
 };
 
@@ -40,28 +40,48 @@ Envy.prototype.createApp = function () {
 
 };
 
-Envy.prototype.listApps = function () {
+Envy.prototype.listApps = function (callback) {
+  this._authGet("/apps", function (err, json) {
+    if(err) return callback(err);
 
+    callback(null, json.apps);
+  });
 };
 
-Envy.prototype.getApp = function () {
+Envy.prototype.getApp = function (appName, callback) {
+  this._authGet("/apps/" + appName, function (err, json) {
+    if(err) return callback(err);
 
+    callback(null, json.app);
+  });
 };
 
-Envy.prototype.listAppUsers = function () {
+Envy.prototype.listAppUsers = function (appName, callback) {
+  this._authGet("/apps/" + appName + "/users", function (err, json) {
+    if(err) return callback(err);
 
+    callback(null, json.users);
+  });
 };
 
 Envy.prototype.inviteToApp = function () {
   // Not implemented on server
 };
 
-Envy.prototype.getEnv = function () {
+Envy.prototype.getEnv = function (appName, envName, callback) {
+  this._authGet("/apps/" + appName + "/env/" + envName, function (err, json) {
+    if(err) return callback(err);
 
+    callback(null, json.env);
+  });
 };
 
 Envy.prototype.listEnvUsers = function () {
+  this._authGet("/apps/" + appName + "/env/" + envName + "/users", function (err, json) {
+    if(err) return callback(err);
 
+    callback(null, json.users);
+  });
 };
 
 Envy.prototype.inviteToEnv = function () {
