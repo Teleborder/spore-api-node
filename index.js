@@ -36,8 +36,12 @@ Envy.prototype.login = function (email, password, callback) {
   });
 };
 
-Envy.prototype.createApp = function () {
+Envy.prototype.createApp = function (name, callback) {
+  this._authPost("/apps", { name: name }, function (err, json) {
+    if(err) return callback(err);
 
+    callback(null, json.app);
+  });
 };
 
 Envy.prototype.listApps = function (callback) {
