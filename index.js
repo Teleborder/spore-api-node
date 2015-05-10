@@ -96,8 +96,23 @@ Envy.prototype.getDotEnvy = function () {
 
 };
 
-Envy.prototype.set = function () {
+Envy.prototype.updateEnv = function (appName, envName, data, callback) {
+  if(!data || !Object.keys(data).length) {
+    return callback(new Error("At least one variable must be set to update the environment."));
+  }
 
+  this._authPost("/apps/" + appName + "/env/" + envName, data, function (err, json) {
+    if(err) return callback(err);
+
+    callback(null, json.env);
+  });
+};
+
+Envy.prototype.set = function (appName, envName, key, value, callback) {
+  var data = {};
+  data[key] = value;
+
+  this.updateEnv(appName, envName, data, callback);
 };
 
 // API Support (Private)
