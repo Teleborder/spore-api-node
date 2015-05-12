@@ -1,7 +1,7 @@
 {
-  "name": "envy-api",
-  "version": "0.0.5",
-  "description": "Client for interacting with the Envy API",
+  "name": "spore-api",
+  "version": "0.0.6",
+  "description": "Client for interacting with the Spore API",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

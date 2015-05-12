@@ -1,18 +1,18 @@
 var api = require('./lib/api');
 
-module.exports = Envy;
+module.exports = Spore;
 
-function Envy(options) {
+function Spore(options) {
   options = options || {};
-  this.host = options.host || "envy.dev";
-  this.port = options.port || 3000;
-  this.protocol = options.protocol || "http";
+  this.host = options.host || "api.spore.sh";
+  this.protocol = options.protocol || "https";
+  this.port = options.port || this.defaultPortFor(this.protocol) || 3000;
   this.key = options.key || null;
 }
 
 // Administrative Methods (Public)
 
-Envy.prototype.setKey = function (key) {
+Spore.prototype.setKey = function (key) {
   this.key = key;
 
   return this;
@@ -21,6 +21,6 @@ Envy.prototype.setKey = function (key) {
 // API Methods (Public)
 
 for(var methodName in api) {
-  Envy.prototype[methodName] = api[methodName];
+  Spore.prototype[methodName] = api[methodName];
 }
 
