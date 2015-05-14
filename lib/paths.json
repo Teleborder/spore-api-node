@@ -1,0 +1,13 @@
+{
+  "users": "/users",
+  "user": "/users/:email",
+  "keys": "/users/:email/keys",
+  "apps": "/apps",
+  "app": "/apps/:appId",
+  "envs": "/apps/:appId/envs",
+  "env": "/apps/:appId/envs/:envName",
+  "envUsers": "/apps/:appId/envs/:envName/users",
+  "envUser": "/apps/:appId/envs/:envName/users/:email",
+  "cells": "/apps/:appId/envs/:envName/cells",
+  "cell": "/apps/:appId/envs/:envName/cells/:cellId"
+}
