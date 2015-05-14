@@ -8,13 +8,15 @@ function Spore(options) {
   this.protocol = options.protocol || "https";
   this.port = options.port || this.defaultPortFor(this.protocol) || 3000;
   this.key = options.key || null;
+  this.email = options.email || null;
   this._hooks = [];
 }
 
 // Administrative Methods (Public)
 
-Spore.prototype.setKey = function (key) {
+Spore.prototype.setCredentials = function (email, key) {
   this.key = key;
+  this.email = email;
 
   return this;
 };
