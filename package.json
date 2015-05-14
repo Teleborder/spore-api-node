@@ -1,6 +1,6 @@
 {
   "name": "spore-api",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Client for interacting with a Spore Pod",
   "main": "index.js",
   "scripts": {
@@ -9,6 +9,8 @@
   "author": "Trey Griffith <trey@teleborder.com>",
   "license": "MIT",
   "dependencies": {
-    "request": "^2.55.0"
+    "request": "^2.55.0",
+    "spore-cell-parse": "0.0.1",
+    "spore-errors": "0.0.1"
   }
 }
