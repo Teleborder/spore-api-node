@@ -1,12 +1,12 @@
 {
   "name": "spore-api",
-  "version": "0.0.7",
-  "description": "Client for interacting with the Spore API",
+  "version": "0.1.0",
+  "description": "Client for interacting with a Spore Pod",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Trey Griffith <trey@teleborder.com>",
   "license": "MIT",
   "dependencies": {
     "request": "^2.55.0"
