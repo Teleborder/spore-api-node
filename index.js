@@ -4,7 +4,7 @@ module.exports = Spore;
 
 function Spore(options) {
   options = options || {};
-  this.host = options.host || "pod.spore.sh";
+  this.hostname = options.hostname || "pod.spore.sh";
   this.protocol = options.protocol || "https";
   this.port = options.port || this.defaultPortFor(this.protocol) || 3000;
   this.key = options.key || null;
