@@ -1,6 +1,6 @@
 {
   "name": "spore-api",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Client for interacting with a Spore Pod",
   "main": "index.js",
   "scripts": {
