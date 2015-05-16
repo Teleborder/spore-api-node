@@ -18,7 +18,7 @@ function Spore(options) {
   this.users = new Users(this);
   this.apps = new Apps(this);
   this.memberships = new Memberships(this);
-  this.cells = new Memberships(this);
+  this.cells = new Cells(this);
 }
 
 Spore.prototype.setCredentials = function (email, key) {
