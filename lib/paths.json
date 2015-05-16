@@ -6,8 +6,6 @@
   "invite": "/invites/:token",
   "apps": "/apps",
   "app": "/apps/:appId",
-  "envs": "/apps/:appId/envs",
-  "env": "/apps/:appId/envs/:envName",
   "memberships": "/apps/:appId/envs/:envName/memberships",
   "membership": "/apps/:appId/envs/:envName/memberships/:email",
   "cells": "/apps/:appId/envs/:envName/cells",

@@ -1,4 +1,8 @@
-var api = require('./lib/api');
+var api = require('./lib/api'),
+    Users = require('./lib/api/users'),
+    Apps = require('./lib/api/apps'),
+    Memberships = require('./lib/api/memberships'),
+    Cells = require('./lib/api/cells');
 
 module.exports = Spore;
 
@@ -10,9 +14,12 @@ function Spore(options) {
   this.key = options.key || null;
   this.email = options.email || null;
   this._hooks = [];
-}
 
-// Administrative Methods (Public)
+  this.users = new Users(this);
+  this.apps = new Apps(this);
+  this.memberships = new Memberships(this);
+  this.cells = new Memberships(this);
+}
 
 Spore.prototype.setCredentials = function (email, key) {
   this.key = key;
@@ -26,9 +33,6 @@ Spore.prototype.use = function (hook) {
   this._hooks.push(hook);
 };
 
-// API Methods (Public)
-
 for(var methodName in api) {
   Spore.prototype[methodName] = api[methodName];
 }
-
