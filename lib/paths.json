@@ -2,12 +2,14 @@
   "users": "/users",
   "user": "/users/:email",
   "keys": "/users/:email/keys",
+  "invites": "/invites",
+  "invite": "/invites/:token",
   "apps": "/apps",
   "app": "/apps/:appId",
   "envs": "/apps/:appId/envs",
   "env": "/apps/:appId/envs/:envName",
-  "envUsers": "/apps/:appId/envs/:envName/users",
-  "envUser": "/apps/:appId/envs/:envName/users/:email",
+  "memberships": "/apps/:appId/envs/:envName/memberships",
+  "membership": "/apps/:appId/envs/:envName/memberships/:email",
   "cells": "/apps/:appId/envs/:envName/cells",
   "cell": "/apps/:appId/envs/:envName/cells/:cellId"
 }
