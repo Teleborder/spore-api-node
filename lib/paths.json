@@ -8,6 +8,8 @@
   "app": "/apps/:appId",
   "memberships": "/apps/:appId/envs/:envName/memberships",
   "membership": "/apps/:appId/envs/:envName/memberships/:email",
+  "deployments": "/apps/:appId/envs/:envName/deployments",
+  "deployment": "/apps/:appId/envs/:envName/deployments/:deploymentName",
   "cells": "/apps/:appId/envs/:envName/cells",
   "cell": "/apps/:appId/envs/:envName/cells/:cellId"
 }
