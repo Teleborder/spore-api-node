@@ -2,6 +2,7 @@ var api = require('./lib/api'),
     Users = require('./lib/api/users'),
     Apps = require('./lib/api/apps'),
     Memberships = require('./lib/api/memberships'),
+    Deployments = require('./lib/api/deployments'),
     Cells = require('./lib/api/cells');
 
 module.exports = Spore;
@@ -19,6 +20,7 @@ function Spore(options) {
   this.users = new Users(this);
   this.apps = new Apps(this);
   this.memberships = new Memberships(this);
+  this.deployments = new Deployments(this);
   this.cells = new Cells(this);
 }
 
