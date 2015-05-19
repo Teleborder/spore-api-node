@@ -13,6 +13,7 @@ function Spore(options) {
   this.port = options.port || this.defaultPortFor(this.protocol) || 3000;
   this.key = options.key || null;
   this.email = options.email || null;
+  this.name = options.name || null;
   this._hooks = [];
 
   this.users = new Users(this);
@@ -21,9 +22,14 @@ function Spore(options) {
   this.cells = new Cells(this);
 }
 
-Spore.prototype.setCredentials = function (email, key) {
-  this.key = key;
-  this.email = email;
+Spore.prototype.setCredentials = function (credentials) {
+  this.key = credentials.key;
+
+  // users have emails
+  this.email = credentials.email;
+
+  // deployments have names
+  this.name = credentials.name;
 
   return this;
 };
