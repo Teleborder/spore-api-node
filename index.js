@@ -15,7 +15,6 @@ function Spore(options) {
   this.key = options.key || null;
   this.email = options.email || null;
   this.name = options.name || null;
-  this._hooks = [];
 
   this.users = new Users(this);
   this.apps = new Apps(this);
