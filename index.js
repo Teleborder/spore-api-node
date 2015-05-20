@@ -36,11 +36,6 @@ Spore.prototype.setCredentials = function (credentials) {
   return this;
 };
 
-// add hooks for when callbacks return
-Spore.prototype.use = function (hook) {
-  this._hooks.push(hook);
-};
-
 for(var methodName in api) {
   Spore.prototype[methodName] = api[methodName];
 }
