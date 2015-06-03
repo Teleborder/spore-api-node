@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Trey Griffith <trey@teleborder.com>",
+  "author": "Trey Griffith <trey@tgriff3.com>",
   "license": "MIT",
   "dependencies": {
     "request": "^2.55.0",
