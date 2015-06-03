@@ -7,6 +7,14 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Trey Griffith <trey@tgriff3.com>",
+  "homepage": "https://github.com/spore-sh/spore-api-node",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/spore-sh/spore-api-node.git"
+  },
+  "bugs": {
+    "url": "https://github.com/spore-sh/spore-api-node/issues"
+  },
   "license": "MIT",
   "dependencies": {
     "request": "^2.55.0",
